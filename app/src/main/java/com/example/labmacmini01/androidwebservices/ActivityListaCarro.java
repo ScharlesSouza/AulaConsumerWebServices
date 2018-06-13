@@ -120,8 +120,12 @@ public class ActivityListaCarro extends AppCompatActivity {
         public void onBindViewHolder(@NonNull final ItemHolder holder, final int position) {
             final Carro carro = lista.get(position);
 
+            if (carro.getUrlFoto().isEmpty()){
+               holder.getImageCarro().setImageResource(R.mipmap.ic_launcher);
+            }else {
+                Picasso.with(contexto).load(carro.getUrlFoto()).error(R.mipmap.ic_launcher).into(holder.getImageCarro());
+            }
 
-            Picasso.with(contexto).load(carro.getUrlFoto()).into(holder.getImageCarro());
             holder.getTextoDesc().setText(carro.getDesc());
             holder.getTextoNome().setText(carro.getNome());
             holder.getTextoTipo().setText(carro.getTipo());
